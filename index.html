@@ -14,8 +14,10 @@
   <script src="lib/plugins/js/plugin.js"></script>
   <script src="lib/luckysheet.umd.js"></script>
   <script>
+    window.editor = null;
+    
     function runJsCode() {
-      const jscode = document.getElementById("jscode").value;
+      const jscode = editor.getValue();
       const head = document.getElementsByTagName("head")[0];
 
       // Create script element
@@ -30,20 +32,24 @@
 
 <body>
   <div id="luckysheet"></div>
-  <script type="module" src="/main.js"></script>
-
+  
   <!-- The Modal -->
   <div id="myModal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
       <span>JavaScript Editor</span>
       <span class="close">&times;</span>
-      <textarea id="jscode" name="w3review"
-        placeholder="Implement your JavaScript code here"></textarea>
+      
+      <div id="jscontainer"></div>
+      <!-- <textarea id="jscode" name="w3review"
+        placeholder="Implement your JavaScript code here"></textarea> -->
       <button id="runJSCode" onclick="runJsCode();">Run</button>
     </div>
 
   </div>
+
+  <script type="module" src="/main.js"></script>
+
 </body>
 
 </html>

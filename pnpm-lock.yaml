@@ -1,7 +1,11 @@
 lockfileVersion: 5.4
 
 specifiers:
+  monaco-editor: ^0.34.1
   vite: ^4.0.0
+
+dependencies:
+  monaco-editor: 0.34.1
 
 devDependencies:
   vite: 4.0.3
@@ -260,6 +264,10 @@ packages:
     dependencies:
       has: 1.0.3
     dev: true
+
+  /monaco-editor/0.34.1:
+    resolution: {integrity: sha512-FKc80TyiMaruhJKKPz5SpJPIjL+dflGvz4CpuThaPMc94AyN7SeC9HQ8hrvaxX7EyHdJcUY5i4D0gNyJj1vSZQ==}
+    dev: false
 
   /nanoid/3.3.4:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}

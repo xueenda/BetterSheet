@@ -1,18 +1,27 @@
-{/* <link rel='stylesheet' href='./plugins/css/pluginsCss.css' />
-<link rel='stylesheet' href='./plugins/plugins.css' />
-<link rel='stylesheet' href='./css/luckysheet.css' />
-<link rel='stylesheet' href='./assets/iconfont/iconfont.css' />
-<script src="./plugins/js/plugin.js"></script>
-<script src="./luckysheet.umd.js"></script> */}
+import * as monaco from 'monaco-editor'
+// import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
+// import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
+// import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker'
+// import htmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker'
+import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
 
-// import './lib/plugins/css/pluginsCss.css'
-// import './lib/plugins/plugins.css'
-// import './lib/css/luckysheet.css'
-// import './lib/assets/iconfont/iconfont.css'
-// import './lib/plugins/js/plugin.js'
-// import './lib/luckysheet.umd.js'
-
-// import './demo'
+self.MonacoEnvironment = {
+  getWorker(_, label) {
+    // if (label === 'json') {
+    //   return new jsonWorker()
+    // }
+    // if (label === 'css' || label === 'scss' || label === 'less') {
+    //   return new cssWorker()
+    // }
+    // if (label === 'html' || label === 'handlebars' || label === 'razor') {
+    //   return new htmlWorker()
+    // }
+    if (label === 'typescript' || label === 'javascript') {
+      return new tsWorker()
+    }
+    // return new editorWorker()
+  }
+}
 
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -21,6 +30,17 @@ var closeEditor = document.getElementsByClassName("close")[0];
 // When the user clicks on <span> (x), close the modal
 closeEditor.onclick = function () {
   modal.style.display = "none";
+}
+
+function embedJsEditor() {
+  if (window.editor)
+    return;
+
+  window.editor = monaco.editor.create(document.getElementById('jscontainer'), {
+    value: '// Implement your JavaScript code here',
+    language: 'javascript',
+    theme: 'vs-dark'
+  });
 }
 
 
@@ -147,6 +167,8 @@ $(function () {
       onClick: function (clickEvent, event, params) {
         console.log('function test click', clickEvent, event, params)
         modal.style.display = "block";
+
+        embedJsEditor();
       }
     }]
   }
@@ -173,5 +195,6 @@ document.onkeydown = function (e) {
   // Open JavaScript Editor
   if (e.key == 'e' && isCtrl == true) {
     modal.style.display = "block";
+    embedJsEditor();
   }
 }
